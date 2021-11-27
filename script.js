@@ -1,3 +1,7 @@
+const addBookBtn = document.querySelector("#addBookBtn");
+
+let form = document.getElementById("form");
+
 let myLibrary = [];
 function Book(title, author, pages) {
     this.title = title;
@@ -11,6 +15,10 @@ function Book(title, author, pages) {
 function addBookToLibrary() {
 
 }
+
+addBookBtn.addEventListener("click", () => {
+    form.style.display ="block";
+})
 
 const book1 = new Book("Harry Potter", "JK Rowling", 196);
 myLibrary.push(book1);
