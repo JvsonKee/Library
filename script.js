@@ -26,10 +26,6 @@ myLibrary.push(book1);
 const book2 = new Book("The Name of The Wind", "Patrick Rothfuss", 562);
 myLibrary.push(book2);
 
-const book3 = new Book("The Lightning Thief", "Rick Riordan", 265);
-myLibrary.push(book3);
-
-
 for (let i = 0; i < myLibrary.length; i++) {
     const div = document.createElement('div');
     div.classList.add("book");
