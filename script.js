@@ -18,14 +18,10 @@ function Book(title, author, pages) {
     }
 }
 function addBookToLibrary() {
-    formSubmitBtn.addEventListener("click", () => {
-        title = document.getElementById("title").value;
-        author = document.getElementById("author").value;
-        pages = document.getElementById("pages").value;
-    })
-    let newBook = new Book (title, author, pages);
-    myLibrary.push(newBook);
+    
+
 }
+
 
 addBookBtn.addEventListener("click", () => {
     overlay.style.display = "block";
@@ -34,6 +30,11 @@ addBookBtn.addEventListener("click", () => {
     form.style.zIndex = "2";
 })
 
+formSubmitBtn.addEventListener("click", () => {
+    title = document.getElementById("title").value;
+    author = document.getElementById("author").value;
+    pages = document.getElementById("number").value;
+})
 
 const book1 = new Book("Harry Potter", "JK Rowling", 196);
 myLibrary.push(book1);
