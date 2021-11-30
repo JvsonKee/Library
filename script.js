@@ -1,4 +1,9 @@
 const addBookBtn = document.querySelector("#addBookBtn");
+const formSubmitBtn = document.querySelector("#submit");
+
+let title;
+let author;
+let pages;
 
 let form = document.getElementById("form");
 
@@ -13,12 +18,22 @@ function Book(title, author, pages) {
     }
 }
 function addBookToLibrary() {
-
+    formSubmitBtn.addEventListener("click", () => {
+        title = document.getElementById("title").value;
+        author = document.getElementById("author").value;
+        pages = document.getElementById("pages").value;
+    })
+    let newBook = new Book (title, author, pages);
+    myLibrary.push(newBook);
 }
 
 addBookBtn.addEventListener("click", () => {
-    form.style.display ="block";
+    overlay.style.display = "block";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    form.style.display = "block";
+    form.style.zIndex = "2";
 })
+
 
 const book1 = new Book("Harry Potter", "JK Rowling", 196);
 myLibrary.push(book1);

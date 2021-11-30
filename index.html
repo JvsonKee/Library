@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="page">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,16 +21,14 @@
     </div>
 </body>
 <div id="form">
-    <fieldset>
-        <form>
-            <label>Title: </label>
-            <input type="text" id="title"><br /><br />
-            <label>Author: </label>
-            <input type="text" id="author"><br /><br />
-            <label>Pages: </label>
-            <input type="number" id="number"><br /><br />
-            <button id="submit">Submit</button>
-        </form>
-    </fieldset>
+    <form>
+        <h2>Add new book</h2>
+        <input type="text" id="title" placeholder="Title"><br /><br />
+        <input type="text" id="author" placeholder="Author"><br /><br />
+        <input type="number" id="number" placeholder="Pages"><br /><br />
+        <button id="submit">Submit</button>
+    </form>
+   
 </div>
+<div id="overlay"></div>
 </html>
