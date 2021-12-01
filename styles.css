@@ -1,15 +1,15 @@
 h1 {
     text-align: center;
 }
-#form {
-    display: block;
+#form-div {
+    display: none;
     position: relative;
     text-align: center;
     width: 500px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
-    
+    z-index: 2;
 }
 form {
     border: 2px solid black;
@@ -31,5 +31,5 @@ form input {
     left:0;
     bottom:0; 
     right:0;
-    background-color:rgba(0,0,0,0);   
+    background-color:rgba(0,0,0,0.5);   
 }

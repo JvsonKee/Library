@@ -17,16 +17,16 @@
         </div>
     </div>
     <div>
-        <button id=addBookBtn>Add Book</button>
+        <button id=add-book-btn>Add Book</button>
     </div>
 </body>
-<div id="form">
-    <form>
+<div id="form-div">
+    <form id="form">
         <h2>Add new book</h2>
         <input type="text" id="title" placeholder="Title"><br /><br />
         <input type="text" id="author" placeholder="Author"><br /><br />
-        <input type="number" id="number" placeholder="Pages"><br /><br />
-        <button id="submit" value="Submit" onclick="getData()">Submit</button>
+        <input type="number" id="pages" placeholder="Pages"><br /><br />
+        <input type="button" id="submit" value="Submit" onclick="return addBookToLibrary()">
     </form>
    
 </div>
