@@ -9,7 +9,26 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     background-color: white;
+    border-radius: 10px;
     z-index: 2;
+}
+#checkbox {
+    height: 12px;
+}
+#bookCard {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    
+}
+#bookCard div {
+    text-align: center;
+    background-color: green;
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
 }
 form {
     border: 2px solid black;
@@ -21,7 +40,10 @@ form input {
     width: 250px;
 }
 #books {
-    background-color: pink;
+    /* background-color: pink; */
+}
+#addBook {
+    text-align: center;
 }
 #overlay {
     display: none;
