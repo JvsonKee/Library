@@ -41,59 +41,63 @@ function addBookToLibrary() {
     let index =  myLibrary.indexOf(newBook);
 
     createCard();
-    //cardInformation(index);
-    //resetForm();
+    cardInformation(index);
+    resetForm();
 
     console.log(myLibrary);
 }
 
 function createCard() {
     const bookDiv = document.createElement('div');
-    bookDiv.classList.add('bookCard');
+    //bookDiv.setAttribute('id', 'book');
+    bookDiv.classList.add('book');
     bookCard.append(bookDiv);
 }
 
 function cardInformation(index) {
-    const card = document.querySelectorAll('.bookCard');
-    
-    const bookTitle = document.createElement("p");
-    bookTitle.setAttribute('id', 'bookTitle');
-    let title = myLibrary[index].getTitle();
-    const titleNode = document.createTextNode(title);
-    bookTitle.appendChild(titleNode);
-    card.appendChild(bookTitle);
+    const card = document.getElementsByClassName('book');
 
-    const bookAuthor = document.createElement("p");
-    bookAuthor.setAttribute('id', 'bookAuthor');
-    let author = myLibrary[index].getAuthor();
-    const authorNode = document.createTextNode(author);
-    bookAuthor.appendChild(authorNode);
-    card.appendChild(bookAuthor);
+    for (let i = 0; i < card.length; i++) {
+        if (index == i) {
+            const bookTitle = document.createElement("p");
+            bookTitle.setAttribute('id', 'book');
+            let title = myLibrary[index].getTitle();
+            const titleNode = document.createTextNode(title);
+            bookTitle.appendChild(titleNode);
+            card[i].appendChild(bookTitle);
 
-    const bookPages = document.createElement("p");
-    bookPages.setAttribute('id', 'bookPages');
-    let pages = myLibrary[index].getPages();
-    const pagesNode = document.createTextNode(pages);
-    bookPages.appendChild(pagesNode);
-    card.appendChild(bookPages);
+            const bookAuthor = document.createElement("p");
+            bookAuthor.setAttribute('id', 'bookAuthor');
+            let author = myLibrary[index].getAuthor();
+            const authorNode = document.createTextNode(author);
+            bookAuthor.appendChild(authorNode);
+            card[i].appendChild(bookAuthor);
 
-    const statusButton = document.createElement("button");
-    statusButton.setAttribute('id', 'statusButton' + index);
-    statusButton.innerHTML = "Unread";
-    toggleStatus(statusButton, index);
-    card.append(statusButton);
+            const bookPages = document.createElement("p");
+            bookPages.setAttribute('id', 'bookPages');
+            let pages = myLibrary[index].getPages();
+            const pagesNode = document.createTextNode(pages);
+            bookPages.appendChild(pagesNode);
+            card[i].appendChild(bookPages);
 
-    const removeButton = document.createElement("button");
-    removeButton.setAttribute('id', 'id' + index);
-    removeButton.innerHTML = "Remove";
-    removeBook(removeButton, index);
-    card.append(removeButton);
+            const statusButton = document.createElement("button");
+            statusButton.setAttribute('id', 'statusButton');
+            statusButton.innerHTML = "Unread";
+            toggleStatus(statusButton, index);
+            card[i].append(statusButton);
 
+            const removeButton = document.createElement("button");
+            removeButton.setAttribute('id', 'removeButton');
+            removeButton.innerHTML = "Remove";
+            removeBook(removeButton, index);
+            card[i].append(removeButton);
+        }
+    }
 }
 
-function toggleStatus(button, index) {
+function toggleStatus(button) {
     button.addEventListener('click', function onClick() {
-        let status = document.getElementById('statusButton' + index).innerHTML;
+        let status = document.getElementById('statusButton').innerHTML;
         
         if (status == "Unread") {
             button.style.backgroundColor = "green";
@@ -108,8 +112,12 @@ function toggleStatus(button, index) {
 function removeBook(button, index) {
     button.addEventListener('click', function onClick() {
         myLibrary.splice(index, 1);
-        const bookToRemove = document.getElementById('id' + index);
-        bookToRemove.remove();
+        const bookToRemove = document.getElementsByClassName('book');
+        for (let i = 0; i < bookToRemove.length; i++) {
+            if (index == i) {
+                bookToRemove[i].remove();
+            }
+        }
         console.log(myLibrary);
     })
 }
