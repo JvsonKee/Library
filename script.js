@@ -4,6 +4,7 @@ const formSubmitBtn = document.querySelector("#submit");
 const statusButton = document.getElementById("statusButton")
 const removeButton = document.getElementById("removeButton");
 const form = document.getElementById("form-div");
+const formExitButton = document.getElementById("exit");
 
 let title;
 let author;
@@ -112,12 +113,8 @@ function toggleStatus(button) {
 function removeBook(button, index) {
     button.addEventListener('click', function onClick() {
         myLibrary.splice(index, 1);
-        const bookToRemove = document.getElementsByClassName('book');
-        for (let i = 0; i < bookToRemove.length; i++) {
-            if (index == i) {
-                bookToRemove[i].remove();
-            }
-        }
+        let bookToRemove = document.getElementsByClassName('book');
+        bookToRemove[index].remove();
         console.log(myLibrary);
     })
 }
@@ -135,3 +132,12 @@ addBookBtn.addEventListener("click", () => {
     overlay.style.display = "block";
     form.style.display = "block";
 })
+
+formExitButton.addEventListener("click", () => {
+    overlay.style.display = "none";
+    form.style.display = "none";
+})
+
+formSubmitBtn.addEventListener("click", () => {
+    addBookToLibrary();
+});
