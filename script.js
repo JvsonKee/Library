@@ -41,60 +41,74 @@ function addBookToLibrary() {
 
     let index =  myLibrary.indexOf(newBook);
 
-    createCard();
-    cardInformation(index);
+    createBookCard();
     resetForm();
 
     console.log(myLibrary);
 }
 
-function createCard() {
+
+
+function createBookCard() {
     const bookDiv = document.createElement('div');
-    //bookDiv.setAttribute('id', 'book');
+    let index = myLibrary.length - 1;
+    bookDiv.setAttribute('data-id', index);
     bookDiv.classList.add('book');
     bookCard.append(bookDiv);
+
+    const bookTitle = document.createElement("p");
+    bookTitle.setAttribute('id', 'bookTitle');
+    let title = myLibrary[index].getTitle();
+    const titleNode = document.createTextNode(title);
+    bookTitle.appendChild(titleNode);
+    bookDiv.appendChild(bookTitle);
+
+    const bookAuthor = document.createElement("p");
+    bookAuthor.setAttribute('id', 'bookAuthor');
+    let author = myLibrary[index].getAuthor();
+    const authorNode = document.createTextNode(author);
+    bookAuthor.appendChild(authorNode);
+    bookDiv.appendChild(bookAuthor);
+
+    const bookPages = document.createElement("p");
+    bookPages.setAttribute('id', 'bookPages');
+    let pages = myLibrary[index].getPages();
+    const pagesNode = document.createTextNode(pages);
+    bookPages.appendChild(pagesNode);
+    bookDiv.appendChild(bookPages);
+
+    const statusButton = document.createElement("button");
+    statusButton.setAttribute('id', 'statusButton');
+    statusButton.innerHTML = "Unread";
+    toggleStatus(statusButton, index);
+    bookDiv.append(statusButton);
+
+    const removeButton = document.createElement("button");
+    removeButton.setAttribute('class', 'removeButton');
+    removeButton.innerHTML = "Remove";
+    removeBook(removeButton, index);
+    bookDiv.append(removeButton);
 }
 
-function cardInformation(index) {
-    const card = document.getElementsByClassName('book');
+// const removeBtns = document.getElementsByClassName("removeButton");
+// removeBook.array.forEach(btn => {
+//     btn.addEventListener('click', (e) => {
+//         e.preventDefault();
+//         e.target.closest('div.book').remove();
+//     })
+// });
 
-    for (let i = 0; i < card.length; i++) {
-        if (index == i) {
-            const bookTitle = document.createElement("p");
-            bookTitle.setAttribute('id', 'book');
-            let title = myLibrary[index].getTitle();
-            const titleNode = document.createTextNode(title);
-            bookTitle.appendChild(titleNode);
-            card[i].appendChild(bookTitle);
-
-            const bookAuthor = document.createElement("p");
-            bookAuthor.setAttribute('id', 'bookAuthor');
-            let author = myLibrary[index].getAuthor();
-            const authorNode = document.createTextNode(author);
-            bookAuthor.appendChild(authorNode);
-            card[i].appendChild(bookAuthor);
-
-            const bookPages = document.createElement("p");
-            bookPages.setAttribute('id', 'bookPages');
-            let pages = myLibrary[index].getPages();
-            const pagesNode = document.createTextNode(pages);
-            bookPages.appendChild(pagesNode);
-            card[i].appendChild(bookPages);
-
-            const statusButton = document.createElement("button");
-            statusButton.setAttribute('id', 'statusButton');
-            statusButton.innerHTML = "Unread";
-            toggleStatus(statusButton, index);
-            card[i].append(statusButton);
-
-            const removeButton = document.createElement("button");
-            removeButton.setAttribute('id', 'removeButton');
-            removeButton.innerHTML = "Remove";
-            removeBook(removeButton, index);
-            card[i].append(removeButton);
-        }
+function removeBook() {
+    let remove = document.getElementsByClassName("removeButton");
+    for (let i = 0; i < remove.length; i++) {
+        remove[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            e.target.closest('div.book').remove();
+        })
     }
 }
+
+
 
 function toggleStatus(button) {
     button.addEventListener('click', function onClick() {
@@ -107,15 +121,6 @@ function toggleStatus(button) {
             button.style.backgroundColor = "red";
             button.innerHTML = "Unread"
         }
-    })
-}
-
-function removeBook(button, index) {
-    button.addEventListener('click', function onClick() {
-        myLibrary.splice(index, 1);
-        let bookToRemove = document.getElementsByClassName('book');
-        bookToRemove[index].remove();
-        console.log(myLibrary);
     })
 }
 
