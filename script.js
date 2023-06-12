@@ -1,11 +1,11 @@
 const addBookBtn = document.querySelector("#add-book-btn");
 const addBookForm = document.querySelector('#form');
 const formSubmitBtn = document.querySelector("#submit");
-const statusButton = document.getElementById("statusButton")
-const removeButton = document.getElementById("removeButton");
+const statusButton = document.getElementById("status-button")
 const form = document.getElementById("form-div");
 const formExitButton = document.getElementById("exit");
 
+let removeButtons;
 let title;
 let author;
 let pages;
@@ -32,14 +32,12 @@ function Book(title, author, pages) {
 }
 
 function addBookToLibrary() {
-    title = document.querySelector('#title').value;
+    title = '"' + document.querySelector('#title').value + '"';
     author = document.querySelector('#author').value;
-    pages = document.querySelector('#pages').value;
+    pages = document.querySelector('#pages').value + " pages";
     
     let newBook = new Book(title, author, pages);
     myLibrary.push(newBook);
-
-    let index =  myLibrary.indexOf(newBook);
 
     createBookCard();
     resetForm();
@@ -47,13 +45,17 @@ function addBookToLibrary() {
     console.log(myLibrary);
 }
 
-
-
 function createBookCard() {
     const bookDiv = document.createElement('div');
-    let index = myLibrary.length - 1;
-    bookDiv.setAttribute('data-id', index);
+    let index;
+    if (myLibrary.indexOf.length == 0) {
+        index = 0;
+    } else {
+        index = myLibrary.length - 1;
+    }
+    bookDiv.setAttribute('data-index', index);
     bookDiv.classList.add('book');
+    let bookCard = document.querySelector('#book-card');
     bookCard.append(bookDiv);
 
     const bookTitle = document.createElement("p");
@@ -78,41 +80,40 @@ function createBookCard() {
     bookDiv.appendChild(bookPages);
 
     const statusButton = document.createElement("button");
-    statusButton.setAttribute('id', 'statusButton');
+    statusButton.setAttribute('id', 'status-button');
+    statusButton.setAttribute('data-toggle-index', index);
     statusButton.innerHTML = "Unread";
-    toggleStatus(statusButton, index);
     bookDiv.append(statusButton);
+    toggleStatus(statusButton);
 
     const removeButton = document.createElement("button");
-    removeButton.setAttribute('class', 'removeButton');
+    removeButton.setAttribute('class', 'remove-button');
+    removeButton.setAttribute('data-btn-index', index);
     removeButton.innerHTML = "Remove";
-    removeBook(removeButton, index);
     bookDiv.append(removeButton);
+    removeButtonListener(removeButton);
 }
 
-// const removeBtns = document.getElementsByClassName("removeButton");
-// removeBook.array.forEach(btn => {
-//     btn.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         e.target.closest('div.book').remove();
-//     })
-// });
-
-function removeBook() {
-    let remove = document.getElementsByClassName("removeButton");
-    for (let i = 0; i < remove.length; i++) {
-        remove[i].addEventListener('click', function (e) {
-            e.preventDefault();
-            e.target.closest('div.book').remove();
-        })
-    }
+function removeButtonListener(button) {
+    button.addEventListener('click', () => {
+        button.closest('.book').remove();
+        let btnIndex = button.getAttribute('data-btn-index');
+        shiftList(removeButtons, btnIndex, 'data-btn-index', '.remove-button');
+        myLibrary.splice(btnIndex, 1);
+        console.log(myLibrary);
+    })
 }
 
-
+function shiftList(list, index, attribute, clazz) {
+    list = document.querySelectorAll(clazz);
+        for (let i = index; i < list.length; i++) {
+            list[i].setAttribute(attribute, i);
+        }
+}
 
 function toggleStatus(button) {
-    button.addEventListener('click', function onClick() {
-        let status = document.getElementById('statusButton').innerHTML;
+    button.addEventListener('click', () => {
+        let status = button.innerHTML;
         
         if (status == "Unread") {
             button.style.backgroundColor = "green";
