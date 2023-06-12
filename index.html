@@ -10,26 +10,29 @@
 </head>
 <body>
     <h1>Library</h1>
-    <div id="addBook">
-        <button id=add-book-btn>Add Book</button>
+    <div id="add-book-div">
+        <button id=add-book-btn>+ Add Book</button>
     </div>
-    <div>
-        <div id="bookList">
-            <div id="bookCard">
-                
-            </div>
+    <div id="book-list">
+        <div id="book-card">
+            
         </div>
     </div>
+    
 </body>
 <div id="form-div">
     <form id="form">
-        <h2>Add new book</h2>
         <div id="exit">X</div>
-        <input type="text" id="title" placeholder="Title" required /><br /><br />
-        <input type="text" id="author" placeholder="Author" required /><br /><br />
-        <input type="number" id="pages" placeholder="Pages" required /><br /><br />
-        <label>Have you read it?</label>
-        <input type="checkbox" id="checkbox"><br /><br />
+        <h2>Add new book</h2>
+        <div class="input-fields">
+            <input type="text" id="title" placeholder="Title" required /><br /><br />
+            <input type="text" id="author" placeholder="Author" required /><br /><br />
+            <input type="number" id="pages" placeholder="Pages" required /><br /><br />
+        </div>
+        <div id="checkbox-div">
+            <label>Have you read it?</label>
+            <input type="checkbox" id="checkbox"><br /><br />
+        </div>
         <input type="submit" id="submit" value="Submit" /><br /><br />
     </form>
 </div>
