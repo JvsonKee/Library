@@ -24,7 +24,7 @@ button:hover {
     font-size: larger;
     font-weight: 900;
     height: 50px;
-    width: 200px;
+    width: 160px;
     transition: ease-in-out 0.3s;
 }
 
@@ -44,6 +44,7 @@ button:hover {
 }
 
 .book {
+    transition: ease-in-out 0.4s;
     padding: 10px;
     display: grid; 
     grid-template-rows: repeat(5, 1fr);
@@ -51,13 +52,15 @@ button:hover {
     background-color: rgb(53, 53, 53);
     box-shadow: 6px 6px 0px 0px rgb(125, 237, 151);
     width: 280px;
-    height: 350px;
+    height: 400px;
     font-weight: 800;
     font-size: larger;
 }
 
-.book:hover {
 
+
+.book:hover {
+    transform:translateY(-5px);
 }
 
 .book button {
@@ -69,18 +72,68 @@ button:hover {
     font-size: 17px;
 }
 
-#status-button {
+#title-container {
+    margin-top: 10px;
+    width: 275px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    grid-row: 1/2;
+}
+
+#bookTitle {
+    font-size: 19px;
+    width: 275px;
+    word-wrap: break-word;
+}
+
+#bookAuthor {
+    width: 275px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bookPages {
+    width: 275px;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+[data-toggle-status="unread"] {
     transition: ease-in-out 0.2s;
+    color: rgb(27, 27, 27);
     border: none;
     background-color: rgb(247, 110, 110);
 }
 
-#status-button:hover {
-    background-color: rgba(247, 110, 110, 0.791);
+[data-toggle-status="unread"]:hover {
+    background-color: rgba(247, 110, 110, 0.664);
 }
+
+
+[data-toggle-status="read"] {
+    transition: ease-in-out 0.2s;
+    border: none;
+    background-color: rgb(125, 237, 151);
+}
+
+[data-toggle-status="read"]:hover {
+    background-color: rgba(125, 237, 151, 0.664);
+}
+
 
 .remove-button {
     transition: ease-in-out 0.2s;
+    color: rgb(27, 27, 27);
     border: none;
     background-color: rgb(228, 225, 225);
 }
@@ -118,6 +171,7 @@ form input {
     color: rgb(247, 110, 110);
     font-weight: bolder;
     transition: ease-in-out 0.3s;
+    margin-bottom: 5px;
 }
 
 #exit:hover {
@@ -163,7 +217,7 @@ form h2 {
 
 #submit {
     transition: ease-in-out 0.3s;
-    color: rgb(53, 53, 53);
+    color: rgb(27, 27, 27);
     border: none;
     background-color: rgb(125, 237, 151);
     height: 40px;
@@ -172,7 +226,7 @@ form h2 {
 }
 
 #submit:hover {
-    transform: scale(1.02);
+    background-color: rgba(125, 237, 151, 0.664);;
     cursor: pointer;
 }
 

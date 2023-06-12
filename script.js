@@ -27,25 +27,29 @@ function Book(title, author, pages) {
         return pages;
     }
     this.getInfo = function() {
-        return '"'+ title + '<br>' + author + "<br>" + pages + " pages";
+        return "Title: " + title + ", Author: " + author + ", Pages: " + pages;
     }
 }
 
 function addBookToLibrary() {
-    title = '"' + document.querySelector('#title').value + '"';
+    title = document.querySelector('#title').value;
     author = document.querySelector('#author').value;
-    pages = document.querySelector('#pages').value + " pages";
+    pages = document.querySelector('#pages').value;
+    let status = document.querySelector('#checkbox').checked;
+    console.log({status})
     
     let newBook = new Book(title, author, pages);
+    checkDuplicates(newBook);
+
     myLibrary.push(newBook);
 
-    createBookCard();
+    createBookCard(status);
     resetForm();
 
     console.log(myLibrary);
 }
 
-function createBookCard() {
+function createBookCard(status) {
     const bookDiv = document.createElement('div');
     let index;
     if (myLibrary.indexOf.length == 0) {
@@ -58,12 +62,17 @@ function createBookCard() {
     let bookCard = document.querySelector('#book-card');
     bookCard.append(bookDiv);
 
+    const titleContainer = document.createElement('div');
+    titleContainer.setAttribute('id', 'title-container');
+    bookDiv.appendChild(titleContainer);
+
     const bookTitle = document.createElement("p");
     bookTitle.setAttribute('id', 'bookTitle');
     let title = myLibrary[index].getTitle();
-    const titleNode = document.createTextNode(title);
+    const titleNode = document.createTextNode('"' + title + '"');
     bookTitle.appendChild(titleNode);
-    bookDiv.appendChild(bookTitle);
+    titleContainer.appendChild(bookTitle);
+    resizeFont(bookTitle, titleContainer);
 
     const bookAuthor = document.createElement("p");
     bookAuthor.setAttribute('id', 'bookAuthor');
@@ -75,14 +84,19 @@ function createBookCard() {
     const bookPages = document.createElement("p");
     bookPages.setAttribute('id', 'bookPages');
     let pages = myLibrary[index].getPages();
-    const pagesNode = document.createTextNode(pages);
+    const pagesNode = document.createTextNode(pages + " pages");
     bookPages.appendChild(pagesNode);
     bookDiv.appendChild(bookPages);
 
     const statusButton = document.createElement("button");
     statusButton.setAttribute('id', 'status-button');
-    statusButton.setAttribute('data-toggle-index', index);
-    statusButton.innerHTML = "Unread";
+    if (status == false) {
+        statusButton.setAttribute('data-toggle-status', "unread");
+        statusButton.innerHTML = "Unread";
+    } else {
+        statusButton.setAttribute('data-toggle-status', "read");
+        statusButton.innerHTML = "Read";
+    }
     bookDiv.append(statusButton);
     toggleStatus(statusButton);
 
@@ -116,19 +130,37 @@ function toggleStatus(button) {
         let status = button.innerHTML;
         
         if (status == "Unread") {
-            button.style.backgroundColor = "green";
             button.innerHTML = "Read"
+            button.setAttribute('data-toggle-status', 'read');
         } else {
-            button.style.backgroundColor = "red";
             button.innerHTML = "Unread"
+            button.setAttribute('data-toggle-status', 'unread');
         }
     })
 }
 
+function resizeFont(input, container) {
+    let fontSize = window.getComputedStyle(input).fontSize;
+    fontSize = parseFloat(fontSize);
+    
+    while (input.clientHeight >= container.clientHeight) {
+        fontSize--;
+        input.style.fontSize = fontSize + 'px';
+    }
+}
+
+function checkDuplicates(book) {
+    // if (myLibrary.includes(book.getInfo())) {
+    //     alert("Library already contains this");
+    //     return;
+    // }
+    alert(book.getInfo());
+}
 function resetForm() {
     document.querySelector('#title').value = "";
     document.querySelector('#author').value = "";
     document.querySelector('#pages').value = "";
+    document.querySelector('#checkbox').checked = false;
 
     overlay.style.display = "none";
     form.style.display = "none";
@@ -140,6 +172,7 @@ addBookBtn.addEventListener("click", () => {
 })
 
 formExitButton.addEventListener("click", () => {
+    resetForm();
     overlay.style.display = "none";
     form.style.display = "none";
 })
