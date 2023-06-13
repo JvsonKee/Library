@@ -39,7 +39,7 @@ function addBookToLibrary() {
     console.log({status})
     
     let newBook = new Book(title, author, pages);
-    checkDuplicates(newBook);
+    //checkDuplicates(newBook);
 
     myLibrary.push(newBook);
 
