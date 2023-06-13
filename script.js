@@ -154,7 +154,7 @@ function checkDuplicates(book) {
     //     alert("Library already contains this");
     //     return;
     // }
-    alert(book.getInfo());
+    //alert(book.getInfo());
 }
 function resetForm() {
     document.querySelector('#title').value = "";
