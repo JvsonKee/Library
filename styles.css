@@ -67,7 +67,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     height: 45px;
-    width: 200px;
+    width: 130px;
     font-weight: 700;
     font-size: 17px;
 }
@@ -154,7 +154,6 @@ button:hover {
 }
 
 form {
-    border-radius: px;
     border: none;
     padding: 20px;
     width: 250px;
@@ -215,12 +214,19 @@ form h2 {
     cursor: pointer;
 }
 
+#submit-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #submit {
     transition: ease-in-out 0.3s;
     color: rgb(27, 27, 27);
     border: none;
     background-color: rgb(125, 237, 151);
     height: 40px;
+    width: 130px;
     font-weight: bolder;
     font-size: larger;
 }
